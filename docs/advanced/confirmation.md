@@ -153,7 +153,7 @@ processed transactions.
 
 ### Other blockchains
 
-Solana's approach of prevent double processing is quite different from other
+Solana's approach to prevent double processing is quite different from other
 blockchains. For example, Ethereum tracks a counter (nonce) for each transaction
 sender and will only process transactions that use the next valid nonce.
 
@@ -194,7 +194,7 @@ decreased, users don't have enough time to submit their transaction.
 Currently, Solana clusters require that transactions use blockhashes that are no
 more than 151 blocks old.
 
-> This [Github issue](https://github.com/solana-labs/solana/issues/23582)
+> This [GitHub issue](https://github.com/solana-labs/solana/issues/23582)
 > contains some calculations that estimate that mainnet-beta validators need
 > about 150MB of memory to track transactions. This could be slimmed down in the
 > future if necessary without decreasing expiration time as are detailed in that
@@ -230,7 +230,7 @@ to a different commitment level.
 The `confirmed` commitment level should almost always be used for RPC requests
 because it's usually only a few slots behind the `processed` commitment and has
 a very low chance of belonging to a dropped
-[fork](https://docs.solanalabs.com/consensus/fork-generation).
+[fork](https://docs.anza.xyz/consensus/fork-generation).
 
 But feel free to consider the other options:
 
@@ -396,7 +396,7 @@ Here's how these durable transactions are processed by the Solana runtime:
    processed again
 
 For more details about how these durable transactions work, you can read the
-[original proposal](https://docs.solanalabs.com/implemented-proposals/durable-tx-nonces)
+[original proposal](https://docs.anza.xyz/implemented-proposals/durable-tx-nonces)
 and
 [check out an example](/content/guides/advanced/introduction-to-durable-nonces.md)
 in the Solana docs.

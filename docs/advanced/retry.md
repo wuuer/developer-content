@@ -3,6 +3,11 @@ sidebarSortOrder: 2
 title: Retrying Transactions
 altRoutes:
   - /docs/core/transactions/retry
+description:
+  Learn how to handle dropped transactions and implement custom retry logic on
+  Solana. This guide covers transaction rebroadcasting, preflight checks, and
+  best practices for managing transaction retries to ensure reliable transaction
+  processing on the Solana blockchain.
 ---
 
 # Retrying Transactions
@@ -137,13 +142,13 @@ transaction submission if developers enable
 
 ![Transaction dropped via an RPC Pool](/assets/docs/rt-dropped-via-rpc-pool.png)
 
-Temporarily network forks can also result in dropped transactions. If a
-validator is slow to replay its blocks within the Banking Stage, it may end up
-creating a minority fork. When a client builds a transaction, it's possible for
-the transaction to reference a `recentBlockhash` that only exists on the
-minority fork. After the transaction is submitted, the cluster can then switch
-away from its minority fork before the transaction is processed. In this
-scenario, the transaction is dropped due to the blockhash not being found.
+Temporary network forks can also result in dropped transactions. If a validator
+is slow to replay its blocks within the Banking Stage, it may end up creating a
+minority fork. When a client builds a transaction, it's possible for the
+transaction to reference a `recentBlockhash` that only exists on the minority
+fork. After the transaction is submitted, the cluster can then switch away from
+its minority fork before the transaction is processed. In this scenario, the
+transaction is dropped due to the blockhash not being found.
 
 ![Transaction dropped due to minority fork (before processed)](/assets/docs/rt-dropped-minority-fork-pre-process.png)
 
@@ -285,7 +290,7 @@ fork.
 If an application has access to RPC nodes behind a load balancer, it can also
 choose to divide its workload amongst specific nodes. RPC nodes that serve
 data-intensive requests such as
-[getProgramAccounts](/content//guides/javascript/get-program-accounts.md) may be
+[getProgramAccounts](/content/guides/javascript/get-program-accounts.md) may be
 prone to falling behind and can be ill-suited for also forwarding transactions.
 For applications that handle time-sensitive transactions, it may be prudent to
 have dedicated nodes that only handle `sendTransaction`.

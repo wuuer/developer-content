@@ -154,14 +154,14 @@ If your editor is not configured to auto-format on save using prettier, then you
 can run the following command to auto-format all files in your local repo/PR:
 
 ```shell
-yarn prettier:fix
+pnpm prettier:fix
 ```
 
 You can also run the prettier check command to see which files do not follow the
 prettier formatting guidelines.
 
 ```shell
-yarn prettier
+pnpm prettier
 ```
 
 #### Rust & Anchor
@@ -914,7 +914,7 @@ To embed a Whimsical diagram:
   [Edwards curves](https://en.wikipedia.org/wiki/Edwards_curve). This is
   [what the curve Ed25519 uses looks like](https://www.wolframalpha.com/input?i=x%5E2+%2B+y%5E2+%3D+1+-+%28121665%2F121666%29*x%5E2*y%5E2).
   Solana public keys are the Y values on this curve (we can omit the X value
-  because the curve is symmatrical). Ed25519 is symmetrical, and looks like a
+  because the curve is symmetrical). Ed25519 is symmetrical, and looks like a
   slightly deflated beach ball. **Do not draw a snake or some other kind or
   curve!**
 
@@ -999,16 +999,16 @@ git clone https://github.com/solana-foundation/developer-content.git
 cd developer-content
 ```
 
-2. Install the dependencies via `yarn`:
+2. Install the dependencies via `pnpm`:
 
 ```shell
-yarn install
+pnpm install
 ```
 
 3. Run the developer content API locally:
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 > Note: The developer content API normally runs locally on port `3001`

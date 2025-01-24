@@ -64,7 +64,7 @@ This is known as the double-spend problem and is one of the core issues that
 blockchains, like Solana, solve. A naive solution could be to crosscheck all
 transactions made in the past and see if we find a duplicate transaction
 signature. This is not practically possible, as the size of the Solana ledger
-is >80 TB. So to solve this, Solana uses recent blockhashs.
+is >80 TB. So to solve this, Solana uses recent blockhashes.
 
 A recent blockhash is a 32-byte SHA-256 hash of a valid block's last
 [entry id](https://solana.com/docs/terminology#blockhash) within the last 150
@@ -171,7 +171,7 @@ the nonce. This ensures that every transaction which is signed using the nonce
 as the recent blockhash will be unique.
 
 It is important to note that durable nonces require
-[unique mechanisms within Solana](https://docs.solanalabs.com/implemented-proposals/durable-tx-nonces)
+[unique mechanisms within Solana](https://docs.anza.xyz/implemented-proposals/durable-tx-nonces)
 to function, thus they have some special rules that don't apply normally. We'll
 see this as we deep dive into the technicals.
 

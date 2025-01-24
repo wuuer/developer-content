@@ -145,7 +145,7 @@ The `cpi` module turns `callee`'s instruction handlers into Rust functions.
 These functions take a `CpiContext` and any extra data needed for the
 instruction. They work just like the instruction handlers in your Anchor
 programs, but use `CpiContext` instead of `Context`. The `cpi` module also
-provides the account structs needed for these instruction handler.
+provides the account structs needed for these instruction handlers.
 
 For example, if `callee` has the instruction `do_something` that requires the
 accounts defined in the `DoSomething` struct, you could invoke `do_something` as
@@ -362,6 +362,17 @@ anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }
 anchor-spl = "0.30.1"
 ```
 
+Since we are adding `anchor-spl` as a dependency we also need to add the
+`idl-build` for it in the features section of `Cargo.toml`. This is because all
+types that will be used in the `Accounts` structures that we are adding in this
+lesson require the `IdlBuild` trait implementation to generate an IDL.
+
+```rust
+[features]
+# All lines remain unchanged, except for this idl-build line
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+```
+
 ### Initialize reward token
 
 Next, navigate to `lib.rs` and implement the `InitializeMint` context type and
@@ -383,7 +394,7 @@ pub struct InitializeMint<'info> {
         bump,
         payer = user,
         mint::decimals = 6,
-        mint::authority = mint,
+        mint::authority = user,
     )]
     pub mint: Account<'info, Mint>,
     #[account(mut)]
@@ -443,7 +454,7 @@ Next, update the `AddMovieReview` context type to add the following accounts:
 - `token_program` - we'll be using the Token Program to mint tokens
 - `mint` - the mint account for the tokens that we'll mint to users when they
   add a movie review
-- `token_account` - the associated token account for the afforementioned `mint`
+- `token_account` - the associated token account for the aforementioned `mint`
   and reviewer
 - `associated_token_program` - required because we'll be using the
   `associated_token` constraint on the `token_account`
@@ -564,7 +575,7 @@ pub fn add_movie_review(
                 &[ctx.bumps.mint]
             ]]
         ),
-        10*10^6
+        10 * 10u64.pow(6)
     )?;
 
     msg!("Minted tokens");
@@ -661,7 +672,7 @@ it("Initializes the reward token", async () => {
 });
 ```
 
-Notice that we didn't have to add `.accounts` because they call be inferred,
+Notice that we didn't have to add `.accounts` because they can be inferred,
 including the `mint` account (assuming you have seed inference enabled).
 
 Next, update the test for the `addMovieReview` instruction. The primary
@@ -694,7 +705,7 @@ it("Movie review is added`", async () => {
   );
 
   const userAta = await getAccount(provider.connection, tokenAccount);
-  expect(Number(userAta.amount)).to.equal((10 * 10) ^ 6);
+  expect(Number(userAta.amount)).to.equal(10 * Math.pow(10, 6));
 });
 ```
 

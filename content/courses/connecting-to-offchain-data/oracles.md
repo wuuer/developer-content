@@ -28,11 +28,8 @@ description: Access real-world data inside a Solana program.
 
 Oracles are services that provide external data to a blockchain network.
 Blockchains are siloed environments that do not inherently know the outside
-world. This constraint limits the use cases for decentralized applications
-(dApps). Oracles solve this limitation by offering a decentralized way to get
-real-world data onchain.
-
-Oracles can provide various types of data onchain, such as:
+world. Oracles solve this limitation by offering a decentralized way to get
+various types of data onchain, such as:
 
 - Results of sporting events
 - Weather data
@@ -720,7 +717,7 @@ within the `programs/burry-escrow` directory:
     ├── Xargo.toml
     └── src
         ├── constants.rs
-        ├── errors.rs
+        ├── error.rs
         ├── instructions
         │   ├── deposit.rs
         │   ├── mod.rs
@@ -801,9 +798,9 @@ pub const SOL_USDC_FEED: &str = "GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR";
 ### 5. Errors
 
 Next, let's define the custom errors we'll use throughout the program. Inside
-the `errors.rs` file, paste the following:
+the `error.rs` file, paste the following:
 
-```rust filename="errors.rs"
+```rust filename="error.rs"
 use anchor_lang::prelude::*;
 
 #[error_code]
@@ -1271,7 +1268,7 @@ describe("burry-escrow", () => {
     if (solPrice === null) {
       throw new Error("Aggregator holds no value");
     }
-    // Although `SOL_USD_SWITCHBOARD_FEED` is not changing we are changing the unlockPrice in test as given below to simulate the escrow behaviour
+    // Although `SOL_USD_SWITCHBOARD_FEED` is not changing we are changing the unlockPrice in test as given below to simulate the escrow behavior
     const unlockPrice = solPrice.minus(PRICE_OFFSET).toNumber();
 
     await createAndVerifyEscrow(unlockPrice);
@@ -1335,7 +1332,7 @@ describe("burry-escrow", () => {
     if (solPrice === null) {
       throw new Error("Aggregator holds no value");
     }
-    // Although `SOL_USD_SWITCHBOARD_FEED` is not changing we are changing the unlockPrice in test as given below to simulate the escrow behaviour
+    // Although `SOL_USD_SWITCHBOARD_FEED` is not changing we are changing the unlockPrice in test as given below to simulate the escrow behavior
     const unlockPrice = solPrice.plus(PRICE_OFFSET).toNumber();
     await createAndVerifyEscrow(unlockPrice);
   });

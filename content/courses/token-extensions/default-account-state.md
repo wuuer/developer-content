@@ -66,10 +66,11 @@ is `Initialized`.
 
 ### Adding default account state
 
-Initializing a mint with transfer fee involves three instructions:
+Initializing a mint with the default account state extension involves three
+instructions:
 
 - `SystemProgram.createAccount`
-- `createInitializeTransferFeeConfigInstruction`
+- `createInitializeDefaultAccountStateInstruction`
 - `createInitializeMintInstruction`
 
 The first instruction `SystemProgram.createAccount` allocates space on the
@@ -223,7 +224,7 @@ Next, we'll need to add our dependencies. Run the following to install the
 required packages:
 
 ```bash
-npm i @solana-developers/helpers @solana/spl-token @solana/web3.js esrun dotenv typescript
+npm i @solana-developers/helpers@2 @solana/spl-token @solana/web3.js@1 esrun dotenv typescript
 ```
 
 Create a directory named `src`. In this directory, create a file named

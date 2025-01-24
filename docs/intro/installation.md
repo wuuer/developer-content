@@ -3,8 +3,10 @@ title: Installation
 seoTitle: Install the Solana CLI and Anchor
 sidebarSortOrder: 1
 description:
-  "Easily setup your local development environment for Solana development on
-  Linux, Mac or Windows. Including installing Rust, the Solana CLI, and Anchor."
+  A comprehensive guide to setting up your local Solana development environment.
+  Learn how to install Rust, the Solana CLI, and Anchor Framework on Windows
+  (WSL), Linux, and Mac. Includes step-by-step instructions for creating
+  wallets, requesting airdrops, and running a local validator.
 altRoutes:
   - /developers/guides/getstarted/setup-local-development
   - /docs/install
@@ -440,8 +442,10 @@ You should the following output:
 </AccordionItem>
 </Accordion>
 
-When running `anchor build`, if you encounter `error: not a directory` similar
-following:
+When running `anchor build`, if you encounter similar errors following:
+
+<Accordion>
+<AccordionItem title="error: not a directory">
 
 ```
 error: not a directory: '.../solana-release/bin/sdk/sbf/dependencies/platform-tools/rust/lib'
@@ -460,6 +464,22 @@ cargo build-sbf --force-tools-install
 ```shell
 rm -rf ~/.cache/solana/*
 ```
+
+</AccordionItem>
+
+<AccordionItem title="lock file version 4 requires `-Znext-lockfile-bump">
+You can fix this by changing the version field of `Cargo.lock` file
+
+```
+version = 3
+```
+
+See [this issue](https://github.com/coral-xyz/anchor/issues/3392) for more
+information.
+
+</AccordionItem>
+
+</Accordion>
 
 After applying either solution, attempt to run `anchor build` again.
 
@@ -502,7 +522,7 @@ Keypair Path: /Users/test/.config/solana/id.json
 Commitment: confirmed
 ```
 
-The RPC URL and Websocket URL specific the Solana cluster the CLI will make
+The RPC URL and Websocket URL specify the Solana cluster the CLI will make
 requests to. By default this will be mainnet-beta.
 
 You can update the Solana CLI cluster using the following commands:
@@ -546,7 +566,7 @@ Generating a new keypair
 
 For added security, enter a BIP39 passphrase
 
-NOTE! This passphrase improves security of the recovery seed phrae NOT the
+NOTE! This passphrase improves security of the recovery seed phrase NOT the
 keypair file itself, which is stored as insecure plain text
 
 BIP39 Passphrase (empty for none):
@@ -611,9 +631,9 @@ Alternatively, you can get devnet SOL using the
 ### Run Local Validator
 
 The Solana CLI comes with the
-[test validator](https://docs.solanalabs.com/cli/examples/test-validator)
-built-in. Running a local validator will allow you to deploy and test your
-programs locally.
+[test validator](https://docs.anza.xyz/cli/examples/test-validator) built-in.
+Running a local validator will allow you to deploy and test your programs
+locally.
 
 In a separate terminal, run the following command to start a local validator:
 

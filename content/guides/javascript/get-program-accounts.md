@@ -18,9 +18,9 @@ altRoutes:
 
 An RPC method that returns all accounts owned by a program. Currently pagination
 is not supported. Requests to
-[`getProgramAccounts`](/docs/rpc//http/getProgramAccounts.mdx) should include
-the `dataSlice` and/or `filters` parameters to improve response time and return
-only intended results.
+[`getProgramAccounts`](/docs/rpc/http/getProgramAccounts.mdx) should include the
+`dataSlice` and/or `filters` parameters to improve response time and return only
+intended results.
 
 ## getProgramAccounts RPC Method
 
@@ -34,7 +34,7 @@ The `getProgramAccounts` RPC method has the following syntax:
     [State commitment](/docs/rpc/index.mdx#configuring-state-commitment)
   - (optional) `encoding`: `string` - Encoding for account data, either:
     `base58`, `base64`, or `jsonParsed`. Note, web3js users should instead use
-    [`getParsedProgramAccounts`](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getParsedProgramAccounts)
+    [`getParsedProgramAccounts`](https://solana-labs.github.io/solana-web3.js/v1.x/classes/Connection.html#getParsedProgramAccounts)
   - (optional) `dataSlice`: `object` - Limit the returned account data based on:
     - `offset`: `number` - Number of bytes into account data to begin returning
     - `length`: `number` - Number of bytes of account data to return
@@ -101,8 +101,7 @@ can efficiently request just the data we intend to use.
 ### `filters`
 
 The most common parameter to use with `getProgramAccounts` is the `filters`
-array. This array accepts two types of filters, `dataSize` and `memcmp`.
-Before  
+array. This array accepts two types of filters, `dataSize` and `memcmp`. Before
 using either of these filters, we should be familiar with how the data we are
 requesting is laid out and serialized.
 
@@ -129,10 +128,9 @@ any field stored on our account. Specifically, we can query only for accounts
 that match a particular set of bytes at a particular position. `memcmp` requires
 two arguments:
 
-- `offset`: the position at which to begin comparing data. This position is  
+- `offset`: the position at which to begin comparing data. This position is
   measured in bytes and is expressed as an integer.
-- `bytes`: the data that should match the account's data. This is represented
-  as  
+- `bytes`: the data that should match the account's data. This is represented as
   a base-58 encoded string should be limited to less than 129 bytes.
 
 It's important to note that `memcmp` will only return results that are an exact
@@ -307,5 +305,5 @@ interested in.
 ## Other Resources
 
 - [RPC API Documentation](https://solana.com/docs/rpc/http/getprogramaccounts)
-- [web3.js documentation](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getProgramAccounts)
-- [getParsedProgramAccounts documentation](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getParsedProgramAccounts)
+- [web3.js documentation](https://solana-labs.github.io/solana-web3.js/v1.x/classes/Connection.html#getProgramAccounts)
+- [getParsedProgramAccounts documentation](https://solana-labs.github.io/solana-web3.js/v1.x/classes/Connection.html#getParsedProgramAccounts)
